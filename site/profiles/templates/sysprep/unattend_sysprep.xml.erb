@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<unattend xmlns="urn:schemas-microsoft-com:unattend">
+    <settings pass="oobeSystem">
+        <component name="Microsoft-Windows-Deployment" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <Reseal>
+                <Mode>OOBE</Mode>
+            </Reseal>
+        </component>
+        <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <OOBE>
+                <HideEULAPage>true</HideEULAPage>
+                <ProtectYourPC>1</ProtectYourPC>
+                <NetworkLocation>Work</NetworkLocation>
+            </OOBE>
+            <FirstLogonCommands>
+                <SynchronousCommand wcm:action="add">
+                    <Order>1</Order>
+                    <CommandLine>cmd /c powershell.exe -command &quot;&amp; {Set-executionpolicy RemoteSigned -Force}&quot;</CommandLine>
+                    <Description>Sets Powershell to RemoteSigned</Description>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <Order>2</Order>
+                    <CommandLine>cmd /c powershell.exe -file c:\tcc\bin\1_join_domain.ps1 &gt; c:\tcc\log\1_trace.txt</CommandLine>
+                    <Description>reboots</Description>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <Order>3</Order>
+                    <CommandLine>cmd /c powershell.exe -command &quot;&amp; {logoff.exe}&quot;</CommandLine>
+                    <Description>logs off</Description>
+                </SynchronousCommand>
+            </FirstLogonCommands>
+            <UserAccounts>
+                <AdministratorPassword>
+                  <Value><%= @adminhash %></Value>
+                    <PlainText>false</PlainText>
+                </AdministratorPassword>
+                <LocalAccounts>
+                    <LocalAccount wcm:action="add">
+                        <Password>
+                          <Value><%= @adminhash2 %></Value>
+                            <PlainText>false</PlainText>
+                        </Password>
+                        <DisplayName>Administrator</DisplayName>
+                        <Group>Administrators</Group>
+                        <Name>Administrator</Name>
+                    </LocalAccount>
+                </LocalAccounts>
+            </UserAccounts>
+            <RegisteredOwner>NMT</RegisteredOwner>
+            <RegisteredOrganization>TCC</RegisteredOrganization>
+            <ShowWindowsLive>false</ShowWindowsLive>
+            <TimeZone>Mountain Standard Time</TimeZone>
+            <AutoLogon>
+                <LogonCount>3</LogonCount>
+                <Username>administrator</Username>
+                <Enabled>true</Enabled>
+                <Password>
+                  <Value><%= @adminhash2 %></Value>
+                    <PlainText>false</PlainText>
+                </Password>
+            </AutoLogon>
+        </component>
+        <component name="Microsoft-Windows-International-Core" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <InputLocale>en-US</InputLocale>
+            <SystemLocale>en-US</SystemLocale>
+            <UILanguage>en-US</UILanguage>
+            <UserLocale>en-US</UserLocale>
+        </component>
+    </settings>
+    <settings pass="specialize">
+        <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <ClientApplications>
+                <Internet>FIREFOX.EXE</Internet>
+            </ClientApplications>
+            <Display>
+                <HorizontalResolution>1152</HorizontalResolution>
+                <VerticalResolution>864</VerticalResolution>
+            </Display>
+            <Themes>
+                <DesktopBackground>C:\Users\Public\Pictures\mmountain.JPG</DesktopBackground>
+            </Themes>
+            <CopyProfile>false</CopyProfile>
+            <ComputerName>reference1</ComputerName>
+            <RegisteredOrganization>TCC</RegisteredOrganization>
+            <RegisteredOwner>NMT</RegisteredOwner>
+            <TimeZone>Mountain Standard Time</TimeZone>
+            <ShowWindowsLive>false</ShowWindowsLive>
+            <ProductKey>FG9Q8-4JW7H-WHJPF-CPTDF-J698C</ProductKey>
+        </component>
+        <component name="Microsoft-Windows-ErrorReportingCore" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <DisableWER>1</DisableWER>
+            <DefaultConsent>4</DefaultConsent>
+        </component>
+        <component name="Microsoft-Windows-SQMApi" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <CEIPEnabled>0</CEIPEnabled>
+        </component>
+    </settings>
+    <settings pass="generalize">
+        <component name="Microsoft-Windows-PnpSysprep" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <DoNotCleanUpNonPresentDevices>true</DoNotCleanUpNonPresentDevices>
+            <PersistAllDeviceInstalls>true</PersistAllDeviceInstalls>
+        </component>
+</settings>
+<settings pass="auditSystem">
+        <component name="Microsoft-Windows-PnpCustomizationsNonWinPE" processorArchitecture="x86" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+       <DriverPaths>
+            <PathAndCredentials wcm:action="add" wcm:keyValue="1">
+                    <Path>c:\tcc\driverstore</Path>
+    </PathAndCredentials>
+    </DriverPaths>
+    </component>
+    </settings>
+
+    <cpi:offlineImage cpi:source="wim:g:/sources/install.wim#Windows 7 ENTERPRISE" xmlns:cpi="urn:schemas-microsoft-com:cpi" />
+</unattend>
