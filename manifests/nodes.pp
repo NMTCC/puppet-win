@@ -12,8 +12,8 @@ node default inherits tccwin7 { }
 
 
 node "template-a.tcc7" {
-  #include roles::workstation::student
-  #include grouppolicy
+  include roles::workstation::template
+  include grouppolicy
 
 }
 
