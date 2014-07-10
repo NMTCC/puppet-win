@@ -33,7 +33,7 @@ class profiles::software::nanomodeling {
   package { 'WinCNT':
     ensure          => installed,
     source          => '\\puppet-win.nmt.edu\winshare\packages\wincnt\NanotubeModeler.exe',
-    install_options => ['/s','/f2c:\tcc\log\wincntdebug.txt','/f1\\puppet-win.nmt.edu\winshare\packages\wincnt\setup.iss'],
+    install_options => ['/s','/f2c:\itc\log\wincntdebug.txt','/f1\\puppet-win.nmt.edu\winshare\packages\wincnt\setup.iss'],
   }
 
 }

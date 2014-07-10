@@ -1,7 +1,7 @@
 # Class roles::workstation::template
 
 class roles::workstation::template {
-  include profiles::tcc
+  include profiles::itc
   include profiles::registry
   # include profiles::software
   #nclude profiles::users

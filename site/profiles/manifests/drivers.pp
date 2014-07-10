@@ -20,18 +20,18 @@ class profiles::drivers {
 
 
 # Install driver inf listing file
-  file { 'c:\tcc\etc\drivers.ini':
+  file { 'c:\itc\etc\drivers.ini':
     ensure   => 'file',
     content  => template('profiles/drivers/drivers.ini.erb')
   }
 
 # Install cert listing file
-  file { 'c:\tcc\etc\certs.ini':
+  file { 'c:\itc\etc\certs.ini':
     ensure   => 'file',
     content  => template('profiles/drivers/certs.ini.erb')
   }
 
-  file { 'c:\tcc\bin\add_drivers.ps1':
+  file { 'c:\itc\bin\add_drivers.ps1':
     ensure => 'file',
     source => 'puppet:///modules/profiles/drivers/add_drivers.ps1',
   }

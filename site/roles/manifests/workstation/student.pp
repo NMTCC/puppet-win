@@ -1,7 +1,7 @@
 # Class roles::workstation::student
 
 class roles::workstation::student {
-  include profiles::tcc
+  include profiles::itc
   include profiles::registry
   include profiles::software
   include profiles::users

@@ -18,11 +18,6 @@ class profiles::registry {
     data   => 0,
   }
 
-  # Add tcc driver store
-  #  registry_value { 'HKLM\Software\Microsoft\Windows\CurrentVersion\DevicePath':
-  #   ensure => present,
-  #  data   => '%systemroot%\inf;c:\tcc\driverstore'
-  #}
 
   # Disable "Allow all users to install updates on this computer"
   registry_key { 'HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate': ensure => present }
