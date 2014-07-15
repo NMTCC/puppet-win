@@ -52,7 +52,7 @@ $Session = New-Object -ComObject Microsoft.Update.Session
 $Searcher = $Session.CreateUpdateSearcher()
 $Result = $Searcher.Search("IsInstalled=0 and IsHidden=0")
 $ToLoad = New-Object -ComObject Microsoft.Update.UpdateColl
-$Result.Updates | where-Object {-not (($_.title -like "*Language Pack*") -or ($_.title -eq "Bing Desktop v1.3"))} | ForEach-Object {$_.title; $ToLoad.Add($_)} | %{$_; $_ >> $log}
+$Result.Updates | where-Object {-not (($_.title -like "*Language Pack*") -or ($_.title -like "*Bing*"))} | ForEach-Object {$_.title; $ToLoad.Add($_)} | %{$_; $_ >> $log}
 $ToLoad | ForEach-Object {$_.title}
 if ($ToLoad.count) {
   $Downloader = $Session.CreateUpdateDownloader()
