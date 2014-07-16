@@ -21,7 +21,7 @@ class profiles::software::chocolatey {
     'Cygwin',
     'Quicktime',
     'Silverlight',
-    'iTunes',
+    #'iTunes',
     'InkScape',
     'thunderbird',
     'ActivePerl',
