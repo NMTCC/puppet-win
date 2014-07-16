@@ -23,13 +23,18 @@ Set-ItemProperty "HKLM:\Software\Classes\CLSID\{20D04FE0-3AEA-1069-A2D8-08002B30
 $nlm = [Activator]::CreateInstance([Type]::GetTypeFromCLSID([Guid]"{DCB00C01-570F-4A9B-8D69-199FDBA5723B}"))
 $nlm.getnetworkconnections() | %{$_.getnetwork().getcategory()}  | %{$_; $_ >> $log}
 
+
+"Disable Firewall"  | %{$_; $_ >> $log}
+netsh firewall set opmode disable
+
+
 "Enable PS remoting:" | %{$_; $_ >> $log}
 #Allow remote "net use * \\machine\shared$" connections full administrative rights
 #new-itemproperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System -name LocalAccountTokenFilterPolicy -propertyType DWord -value 1
 Enable-PSRemoting -force 2>&1 | %{$_; $_ >> $log}
 Set-Item -force WSMan:\localhost\Client\TrustedHosts *.nmt.edu 2>&1 | %{$_; $_ >> $log}
 restart-Service winrm
-netsh advfirewall Firewall add rule name=AAAtcc-wsman protocol=tcp dir=in localport=5985 action=allow | out-default | %{$_; $_ >> $log}
+#netsh advfirewall Firewall add rule name=AAAtcc-wsman protocol=tcp dir=in localport=5985 action=allow | out-default | %{$_; $_ >> $log}
 
 "Activate previously installed product key:" | %{$_; $_ >> $log}
 $p = get-wmiObject -query "`
@@ -84,10 +89,10 @@ cd c:\
 "Enable Remote Desktop --low-secutiry remote desktop and firewall:" | %{$_; $_ >> $log}
 (Get-WmiObject -Class "Win32_TerminalServiceSetting" -Namespace root\cimv2\terminalservices).SetAllowTsConnections(1) | %{$_; $_ >> $log}
 (Get-WmiObject -class "Win32_TSGeneralSetting" -Namespace root\cimv2\terminalservices -Filter "TerminalName='RDP-tcp'").SetUserAuthenticationRequired(0) | %{$_; $_ >> $log}
-netsh advfirewall Firewall set rule group="Remote Desktop" new enable=yes | out-default | %{$_; $_ >> $log}
+#netsh advfirewall Firewall set rule group="Remote Desktop" new enable=yes | out-default | %{$_; $_ >> $log}
 
 "Enable ping:" | %{$_; $_ >> $log}
-netsh advfirewall firewall add rule protocol="icmpv4:8,any" dir=in action=allow name="allow ping" profile=any | out-default | %{$_; $_ >> $log}
+#netsh advfirewall firewall add rule protocol="icmpv4:8,any" dir=in action=allow name="allow ping" profile=any | out-default | %{$_; $_ >> $log}
 
 "Turn UAC off:" | %{$_; $_ >> $log}
 set-ItemProperty HkLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System -name EnableLUA -value 0 | %{$_; $_ >> $log}
@@ -102,17 +107,15 @@ Set-Item $path -value 'C:\Python27\' | %{$_; $_ >> $log}
 ntrights -u Users -r SeTimeZonePrivilege
 
 #remote -computername
-netsh advfirewall Firewall add rule name=tcc-epmap_49154 protocol=tcp dir=in localport=135,49154 action=allow
-netsh advfirewall Firewall add rule name=tcc-hostmon_llmr protocol=udp dir=in localport=5355 remoteport=5355 action=allow
+#netsh advfirewall Firewall add rule name=tcc-epmap_49154 protocol=tcp dir=in localport=135,49154 action=allow
+#netsh advfirewall Firewall add rule name=tcc-hostmon_llmr protocol=udp dir=in localport=5355 remoteport=5355 action=allow
 #netsh advfirewall Firewall add rule name=tcc-49154 protocol=tcp dir=in localport=49154 action=allow
 #netsh advfirewall Firewall add rule name=tcc-epmap protocol=tcp dir=in localport=135 action=allow
 #netsh advfirewall firewall add rule name=tcc-icmp3 protocol="icmpv4:3,any" dir=in action=allow
 #netsh advfirewall firewall add rule name=tcc-icmp6 protocol=icmpv6 dir=in action=allow
  
-<#
-"Allow net rpc commands from local network and WINS servers (to run nightly reboot on userhost):" | %{$_; $_ >> $log}
-netsh advfirewall Firewall add rule name=tcc-netlogon protocol=tcp dir=in localport=445 remoteip="LocalSubnet,WINS" action=allow | out-default | %{$_; $_ >> $log}
-#>
+#"Allow net rpc commands from local network and WINS servers (to run nightly reboot on userhost):" | %{$_; $_ >> $log}
+#netsh advfirewall Firewall add rule name=tcc-netlogon protocol=tcp dir=in localport=445 remoteip="LocalSubnet,WINS" action=allow | out-default | %{$_; $_ >> $log}
 
 
 "Enable telnet:" | %{$_; $_ >> $log}
@@ -145,7 +148,6 @@ foreach($nic in $nics) {$x = $nic.SetWINSServer("129.138.4.64","129.138.4.65")}
 #$encrypted = convertfrom-securestring -securestring $secure -key (1..16)
 #$encrypted
 
-netsh firewall set opmode disable
 
 $domain = "TCC7"
 "Join the $domain domain" | %{$_; $_ >> $log}
