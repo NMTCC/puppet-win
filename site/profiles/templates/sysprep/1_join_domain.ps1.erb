@@ -49,8 +49,6 @@ $p.Activate() | %{$_; $_ >> $log}
 cscript 'C:\Program Files\Microsoft Office\Office15\OSPP.VBS' /act |  %{$_; $_ >> $log}
 
 
-"Reinstall and update Microsoft Security Essentials:" | %{$_; $_ >> $log}
-cinst MicrosoftSecurityEssentials
 
 "Install non-language Windows Updates:" | %{$_; $_ >> $log}
 $Session = New-Object -ComObject Microsoft.Update.Session
@@ -136,8 +134,8 @@ Disable-ComputerRestore -drive "C:\" | %{$_; $_ >> $log}
 "Point Microsoft Office Professional Plus 2010 client to Key ManageSet Service host:" | %{$_; $_ >> $log}
 #Run the next line just before final sysprep on the template image after the 25 day Office install grace period has expired
 #& "\Program Files\Common Files\Microsoft Shared\OfficeSoftwareProtectionPlatform\ospprearm.exe"
-cscript "\Program Files\Microsoft Office\Office14\ospp.vbs" /sethst:keymaster.nmt.edu
-cscript "\Program Files\Microsoft Office\Office14\ospp.vbs" /act
+cscript "\Program Files (x86)\Microsoft Office\Office15\ospp.vbs" /sethst:keymaster.nmt.edu
+cscript "\Program Files (x86)\Microsoft Office\Office15\ospp.vbs" /act
 #
 "Make sure userhost and userhost2 are wins servers:" | %{$_; $_ >> $log}
 $nics = Get-WmiObject Win32_NetworkAdapterConfiguration | Where{$_.IPEnabled -eq "TRUE"}
@@ -148,6 +146,8 @@ foreach($nic in $nics) {$x = $nic.SetWINSServer("129.138.4.64","129.138.4.65")}
 #$encrypted = convertfrom-securestring -securestring $secure -key (1..16)
 #$encrypted
 
+"Reinstall and update Microsoft Security Essentials:" | %{$_; $_ >> $log}
+cinst MicrosoftSecurityEssentials
 
 $domain = "TCC7"
 "Join the $domain domain" | %{$_; $_ >> $log}
