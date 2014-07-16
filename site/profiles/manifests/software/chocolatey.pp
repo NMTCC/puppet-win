@@ -18,7 +18,7 @@ class profiles::software::chocolatey {
     'libreoffice',
     'gimp',
     'winscp',
-    'Cygwin',
+    'cygwin',
     'Quicktime',
     'Silverlight',
     #'iTunes',
