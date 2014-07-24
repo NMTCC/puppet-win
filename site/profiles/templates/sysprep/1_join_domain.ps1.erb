@@ -149,6 +149,10 @@ foreach($nic in $nics) {$x = $nic.SetWINSServer("129.138.4.64","129.138.4.65")}
 "Reinstall and update Microsoft Security Essentials:" | %{$_; $_ >> $log}
 cinst MicrosoftSecurityEssentials
 
+#Chkconfig puppet service on
+Set-Service puppet -StartupType Automatic
+
+
 $domain = "TCC7"
 "Join the $domain domain" | %{$_; $_ >> $log}
 $username = "$domain\root"
