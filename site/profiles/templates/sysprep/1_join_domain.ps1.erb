@@ -25,7 +25,8 @@ $nlm.getnetworkconnections() | %{$_.getnetwork().getcategory()}  | %{$_; $_ >> $
 
 
 "Disable Firewall"  | %{$_; $_ >> $log}
-netsh firewall set opmode disable
+#netsh firewall set opmode disable
+netsh advfirewall set allprofiles state off
 
 
 "Enable PS remoting:" | %{$_; $_ >> $log}
