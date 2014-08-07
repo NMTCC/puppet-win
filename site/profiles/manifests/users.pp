@@ -8,7 +8,7 @@ class profiles::users {
     password   => hiera(winpassword),
   }
 
-  user { 'de':
+  user { 'act':
     ensure     => present,
     managehome => true,
     password   => hiera(depassword),
