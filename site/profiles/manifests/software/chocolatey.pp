@@ -11,7 +11,6 @@ class profiles::software::chocolatey {
     'vlc',
     'putty.install',
     'filezilla',
-    'flashplayerplugin',
     'vim',
     'Emacs',
     'VirtualCloneDrive',
@@ -34,6 +33,7 @@ class profiles::software::chocolatey {
 
   $updatelist = [
     'javaruntime',
+    'flashplayerplugin',
     'adobereader',
     'notepadplusplus',
   ]
