@@ -29,7 +29,7 @@ class profiles::software::chocolatey {
     'miktex',
     'googleearth',
     'blender',
-    'python',
+    'python3',
     ]
 
   $updatelist = [
