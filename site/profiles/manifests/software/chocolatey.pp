@@ -30,6 +30,7 @@ class profiles::software::chocolatey {
     'googleearth',
     'blender',
     'python3',
+    'mingw',
     ]
 
   $updatelist = [
