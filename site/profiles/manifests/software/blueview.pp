@@ -13,7 +13,7 @@ class profiles::software::blueview {
     install_options => ['/S','/v/qn'],
   }
 
-  file { 'C:\Users\Public\Desktop\BlueView':
+  file { 'C:\Users\Public\Desktop\BlueView.lnk':
     ensure          => 'absent',
     force           => 'true',
   }
