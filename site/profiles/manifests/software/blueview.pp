@@ -13,4 +13,9 @@ class profiles::software::blueview {
     install_options => ['/S','/v/qn'],
   }
 
+  file { 'C:\Users\Public\Desktop\BlueView':
+    ensure          => 'absent',
+    force           => 'true',
+  }
+
 }
