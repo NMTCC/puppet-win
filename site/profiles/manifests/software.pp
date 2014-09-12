@@ -9,5 +9,6 @@ class profiles::software {
   include profiles::software::biochemlab
   include profiles::software::nanomodeling
   include profiles::software::petromod
+  include profiles::software::blueview
 
 }
