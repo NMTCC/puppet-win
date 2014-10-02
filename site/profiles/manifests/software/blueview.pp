@@ -10,7 +10,7 @@ class profiles::software::blueview {
     package { 'BlueView':
     ensure          => installed,
     source          => '\\puppet-win.nmt.edu\winshare\packages\BlueView\BlueView1064_setup.exe',
-    install_options => ['/S','/v/qn'],
+    install_options => ['/S','/v"/qn ALLUSERS=1"'],
   }
 
   file { 'C:\Users\Public\Desktop\BlueView.lnk':
