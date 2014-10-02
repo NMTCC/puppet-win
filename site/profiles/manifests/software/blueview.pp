@@ -9,8 +9,8 @@ class profiles::software::blueview {
   # InstallShield
     package { 'BlueView':
     ensure          => installed,
-    source          => '\\puppet-win.nmt.edu\winshare\packages\BlueView\BlueView1064_setup.exe',
-    install_options => ['/S','/v"/qn ALLUSERS=1"'],
+    source          => '\\puppet-win.nmt.edu\winshare\packages\BlueView\BlueView.msi',
+    install_options => ['/qn'],
   }
 
   file { 'C:\Users\Public\Desktop\BlueView.lnk':
