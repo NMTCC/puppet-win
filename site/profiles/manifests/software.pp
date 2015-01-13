@@ -11,5 +11,6 @@ class profiles::software {
   include profiles::software::petromod
   include profiles::software::blueview
   include profiles::software::mathaddin
+  include profiles::software::lanschool
 
 }
