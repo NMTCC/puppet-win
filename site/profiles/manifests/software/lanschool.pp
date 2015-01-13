@@ -80,6 +80,7 @@ class profiles::software::lanschool {
     }
     default: {
       $dummy = [ 'Did not install LanSchool.', ]
+    }
   }
 
 }
