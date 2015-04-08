@@ -34,7 +34,7 @@ class profiles::software::petromod {
   windows_env { 'SLBSLS_LICENSE_FILE':
     ensure    => present,
     mergemode => clobber,
-    value     => '27000@wakulla.ees.nmt.edu',
+    value     => '27000@petromodlicbox.nmt.edu',
   }
 
 }
