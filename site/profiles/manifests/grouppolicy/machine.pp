@@ -35,6 +35,13 @@ class profiles::grouppolicy::machine {
     data   => 1,
   }
 
+  registry::value { 'OtherDeleteRoamingCache':
+    key    => 'HKLM\Software\Microsoft\Windows NT\CurrentVersion\Winlogon',
+    value  => 'DeleteRoamingCache',
+    type   => dword,
+    data   => 1,
+  }
+
   registry::value { 'CleanupProfiles':
     key   => 'HKLM\Software\Policies\Microsoft\Windows\System',
     value => 'CleanupProfiles',
