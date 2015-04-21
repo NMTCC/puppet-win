@@ -2,8 +2,8 @@ forge "http://forge.puppetlabs.com"
 
 # Modules from the Puppet Forge
 mod "puppetlabs/stdlib"
-mod "adenning/winntp"
-mod "adenning/winfacts"
+#mod "adenning/winntp"
+#mod "adenning/winfacts"
 mod "badgerious/windows_env"
 mod "joshcooper/powershell"
 mod "puppetlabs/inifile"
