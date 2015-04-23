@@ -19,7 +19,8 @@ class profiles::software::delprof2 {
       schedule   => 'daily',
       start_time => '00:45',
     }
-    require   => File['delprof2exe'],
   }
+
+  File['delprof2exe'] -> Scheduled_task['Remove old profiles']
 
 }
