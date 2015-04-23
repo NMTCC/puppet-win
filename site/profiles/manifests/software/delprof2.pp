@@ -5,7 +5,7 @@
 class profiles::software::delprof2 {
 
   file { 'delprof2exe':
-    path   => 'C:\itc\DelProf2.exe':
+    path   => 'C:\itc\DelProf2.exe',
     ensure => 'present',
     source => '\\puppet-win.nmt.edu\winshare\packages\Delprof2_1.6.0\DelProf2.exe',
   }
