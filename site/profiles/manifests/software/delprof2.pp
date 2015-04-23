@@ -5,7 +5,7 @@
 class profiles::software::delprof2 {
 
   file { 'delprof2exe':
-    path   => 'C:\itc\DelProf2.exe',
+    path   => 'C:\itc\bin\DelProf2.exe',
     ensure => 'present',
     source => '\\puppet-win.nmt.edu\winshare\packages\Delprof2_1.6.0\DelProf2.exe',
   }
@@ -13,7 +13,7 @@ class profiles::software::delprof2 {
   scheduled_task { 'Remove old profiles':
     ensure    => 'present',
     enabled   => true,
-    command   => 'C:\itc\DelProf2.exe',
+    command   => 'C:\itc\bin\DelProf2.exe',
     arguments => '/q /d:1 /ed:admin* /ed:itc* /ed:act*',
     trigger   => {
       schedule   => 'daily',
