@@ -8,6 +8,6 @@ class roles::workstation::student {
   include profiles::motd
   include profiles::firewall
   include profiles::grouppolicy::machine
-  include profiles::sysprep
+  include profiles::postsysprep
   include profiles::drivers
 }
