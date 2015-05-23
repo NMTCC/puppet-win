@@ -15,7 +15,7 @@ class profiles::diskcleaner {
       key     => "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches\${title}",
       value   => "StateFlags",
       type    => dword,
-      data    => ${uint32t},
+      data    => $uint32t,
       require => Registry_value["${title}"],
     }
   }
