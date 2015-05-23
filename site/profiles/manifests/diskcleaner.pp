@@ -56,7 +56,7 @@ class profiles::diskcleaner {
     trigger   => {
       schedule   => 'daily',
       start_time => '01:15',
-    }
+    },
     require   => Registry_value['VolumeCaches'],
   }
 
