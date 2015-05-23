@@ -6,22 +6,19 @@
 class profiles::diskcleaner {
 
   define dcregentry ($uint32t) {
-    registry_value { "${title}":
-      key     => "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches\${title}",
+    registry_key { "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches\${title}":
       ensure  => present,
-      require => Registry_value['VolumeCaches'],
+      require => Registry_key['HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches'],
     }
-    registry_value { "${title}-stateflags":
-      key     => "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches\${title}",
-      value   => "StateFlags",
+    registry_value { "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches\${title}\StateFlags":
+      ensure  => present,
       type    => dword,
       data    => $uint32t,
-      require => Registry_value["${title}"],
+      require => Registry_key["HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches\${title}"],
     }
   }
 
-  registry_value { 'VolumeCaches':
-    key    => 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches',
+  registry_key { 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches':
     ensure => present,
   }
 
@@ -57,7 +54,7 @@ class profiles::diskcleaner {
       schedule   => 'daily',
       start_time => '01:15',
     },
-    require   => Registry_value['VolumeCaches'],
+    require   => Registry_key['HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches'],
   }
 
 }
