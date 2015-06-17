@@ -10,4 +10,5 @@ class roles::workstation::student {
   include profiles::grouppolicy::machine
   include profiles::postsysprep
   include profiles::drivers
+  include profiles::diskcleaner
 }
