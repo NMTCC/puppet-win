@@ -13,5 +13,6 @@ class profiles::software {
   include profiles::software::mathaddin
   include profiles::software::lanschool
   include profiles::software::delprof2
+  include profiles::software::comsol
 
 }
