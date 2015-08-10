@@ -14,5 +14,6 @@ class profiles::software {
   include profiles::software::lanschool
   include profiles::software::delprof2
   include profiles::software::comsol
+  include profiles::software::solidworks
 
 }
