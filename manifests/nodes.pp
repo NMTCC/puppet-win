@@ -3,6 +3,7 @@ node tccwin7 {
 
 include roles::workstation::student
 include grouppolicy
+include printers
 
 }
 
