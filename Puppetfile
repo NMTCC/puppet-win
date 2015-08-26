@@ -14,8 +14,6 @@ mod "rismoney/chocolatey"
 mod "trlinkin/domain_membership"
 mod "puppetlabs/puppetdb"
 mod "cannonps/local_security_policy"
-#mod "cannonps/local_group_policy"
+mod "cannonps/local_group_policy"
 
-mod 'local_group_policy',
-  :git => 'https://github.com/cannonps/local_group_policy.git'
 
