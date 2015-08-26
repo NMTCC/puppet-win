@@ -13,7 +13,5 @@ mod "puppetlabs/registry"
 mod "rismoney/chocolatey"
 mod "trlinkin/domain_membership"
 mod "puppetlabs/puppetdb"
-mod "cannonps/local_security_policy"
-mod "cannonps/local_group_policy"
 
 
