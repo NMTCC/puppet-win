@@ -15,5 +15,6 @@ class profiles::software {
   include profiles::software::delprof2
   include profiles::software::comsol
   include profiles::software::solidworks
+  include profiles::software::sas
 
 }
