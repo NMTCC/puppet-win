@@ -11,4 +11,7 @@ class roles::workstation::student {
   include profiles::postsysprep
   include profiles::drivers
   include profiles::diskcleaner
+  include profiles::printing
+
+  Class[printers] -> Class[profiles::printing]
 }
