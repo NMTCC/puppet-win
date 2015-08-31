@@ -2,6 +2,6 @@
 define printers::printer($queue=$title, $server='paperhost.nmt.edu') {
   exec { "add-printer-${title}":
     provider  => 'powershell',
-    command   => "rundll32 printui.dll,PrintUIEntry /ga /q /n\\\\${server}\\${queue}",
+    command   => "rundll32 printui.dll,PrintUIEntry /dn /q /n\\\\${server}\\${queue}",
   }
 }
