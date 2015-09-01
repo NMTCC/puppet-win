@@ -24,6 +24,7 @@ class profiles::printing {
   exec { 'printcleanup':
     command  => '$f="c:\itc\bin\AddPrintServerPrinters.ps1"; If (Test-Path $f){ del $f }',
     provider => powershell,
+    require  => Exec['fixprinters'],
   }
 
 }
