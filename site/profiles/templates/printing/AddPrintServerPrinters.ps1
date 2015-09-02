@@ -7,7 +7,7 @@ get-date | %{$start = $_; $_; $_ > $log}
 #2. Remove Shut Down, Restart, Sleep, and Hibernate buttons
 #3. Disable display of last user name
 $reg_file = 'c:\itc\etc\point_and_print.reg'
-reg.exe import $reg_file$ | %{$_; $_ >> $log}
+reg.exe import $reg_file | %{$_; $_ >> $log}
 
 $printserver = 'paperhost'
 
