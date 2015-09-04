@@ -16,7 +16,7 @@ $added_printers = Get-WmiObject -Class Win32_Printer | where name -like "\\$prin
 "Printers already added: $added_printers" | %{$_; $_ >> $log}
 
 #Printers to add from print server (with drivers on print server)
-$printers = 'cramer114 fidel130 fidel130-color library122 library208 library208-color library22 msec187 south218 speare116 speare117 speare142 speare16 speare23-color speare23a speare23b speare4a speare4b speare5 speare5-color transparency weir128 weir209'.split()
+$printers = 'cramer114 fidel130 fidel130-color library122 library208 library208-color library22 msec187 south218 speare116 speare117 speare142 speare16 speare23-color speare23a speare23b speare4a speare4b speare5 speare5-color transparency weir128 weir209 presidents113 speare112 torres130 west219'.split()
 "Target printers: $printers" | %{$_; $_ >> $log}
 
 $wnet = New-Object -ComObject WScript.Network
@@ -39,10 +39,6 @@ $printers | ForEach-Object {
         $wnet.AddWindowsPrinterConnection($PortName) | %{$_; $_ >> $log}
     }
 }
-
-#Printers that need drivers added to print server
-$printers_without_drivers = 'presidents113 speare112 torres130 west219'.split()
-"Printers not targetted: $printers_without_drivers" | %{$_; $_ >> $log}
 
 get-date | %{$end = $_; $_; $_ >> $log}
 "Time for script to run was: $($end - $start)" | %{$_; $_ >> $log}
