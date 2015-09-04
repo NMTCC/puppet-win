@@ -13,5 +13,5 @@ class roles::workstation::student {
   include profiles::diskcleaner
   include profiles::printing
 
-  Class[printers] -> Class[profiles::printing]
+  #Class[printers] -> Class[profiles::printing]
 }
