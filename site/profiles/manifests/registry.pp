@@ -51,11 +51,6 @@ class profiles::registry {
   }
 
   # Disable shut down in start menu
-  registry_value { 'HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\NoClose':
-    ensure => present,
-    type   => dword,
-    data   => 1,
-  }
   registry_value { 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer\NoClose':
     ensure => present,
     type   => dword,
