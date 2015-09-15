@@ -7,7 +7,6 @@ class profiles::printing {
   file { 'c:\itc\bin\AddPrintServerPrinters.ps1':
     ensure  => 'file',
     content => template('profiles/printing/AddPrintServerPrinters.ps1'),
-    require => File['c:\itc\etc\point_and_print.reg'],
   }
 
   exec { 'fixprinters':
