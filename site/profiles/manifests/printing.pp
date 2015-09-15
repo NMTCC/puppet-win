@@ -4,11 +4,6 @@ class profiles::printing {
 
   $domainadmin = hiera('domainadmin')
 
-  file { 'c:\itc\etc\point_and_print.reg':
-    ensure  => 'file',
-    source  => 'puppet:///modules/profiles/printing/point_and_print.reg',
-  }
-
   file { 'c:\itc\bin\AddPrintServerPrinters.ps1':
     ensure  => 'file',
     content => template('profiles/printing/AddPrintServerPrinters.ps1'),

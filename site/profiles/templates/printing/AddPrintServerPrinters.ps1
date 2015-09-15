@@ -3,12 +3,6 @@ $ErrorActionPreference
 $ErrorActionPreference = "Continue"
 get-date | %{$start = $_; $_; $_ > $log}
 
-#1. Disable the "Do you trust this printer?" driver installation dialogue
-#2. Remove Shut Down, Restart, Sleep, and Hibernate buttons
-#3. Disable display of last user name
-$reg_file = 'c:\itc\etc\point_and_print.reg'
-reg.exe import $reg_file | %{$_; $_ >> $log}
-
 $printserver = 'paperhost'
 
 #Get printers already added to this computer

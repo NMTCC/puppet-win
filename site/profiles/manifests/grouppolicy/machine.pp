@@ -71,7 +71,7 @@ class profiles::grouppolicy::machine {
     key   => 'HKLM\Software\Policies\Microsoft\Windows NT\Printers\PointAndPrint',
     value => 'InForest',
     type  => dword,
-    data  => 0,
+    data  => 1,
   }
   registry::value { 'PointAndPrintNoWarningNoElevationOnInstall':
     key   => 'HKLM\Software\Policies\Microsoft\Windows NT\Printers\PointAndPrint',
@@ -87,6 +87,45 @@ class profiles::grouppolicy::machine {
   }
   registry::value { 'PointAndPrintServerList':
     key    => 'HKLM\Software\Policies\Microsoft\Windows NT\Printers\PointAndPrint',
+    value  => 'ServerList',
+    type   => string,
+  }
+  # Wow version
+  registry_key { 'HKLM\Software\Wow6432Node\Policies\Microsoft\Windows NT\Printers':
+    ensure => present,
+  }
+  registry::value { 'WowPointAndPrintRestricted':
+    key   => 'HKLM\Software\Wow6432Node\Policies\Microsoft\Windows NT\Printers\PointAndPrint',
+    value => 'Restricted',
+    type  => dword,
+    data  => 1,
+  }
+  registry::value { 'WowPointAndPrintTrustedServers':
+    key   => 'HKLM\Software\Wow6432Node\Policies\Microsoft\Windows NT\Printers\PointAndPrint',
+    value => 'TrustedServers',
+    type  => dword,
+    data  => 0,
+  }
+  registry::value { 'WowPointAndPrintInForest':
+    key   => 'HKLM\Software\Wow6432Node\Policies\Microsoft\Windows NT\Printers\PointAndPrint',
+    value => 'InForest',
+    type  => dword,
+    data  => 1,
+  }
+  registry::value { 'WowPointAndPrintNoWarningNoElevationOnInstall':
+    key   => 'HKLM\Software\Wow6432Node\Policies\Microsoft\Windows NT\Printers\PointAndPrint',
+    value => 'NoWarningNoElevationOnInstall',
+    type  => dword,
+    data  => 1,
+  }
+  registry::value { 'WowPointAndPrintUpdatePromptSettings':
+    key   => 'HKLM\Software\Wow6432Node\Policies\Microsoft\Windows NT\Printers\PointAndPrint',
+    value => 'UpdatePromptSettings',
+    type  => dword,
+    data  => 2,
+  }
+  registry::value { 'WowPointAndPrintServerList':
+    key    => 'HKLM\Software\Wow6432Node\Policies\Microsoft\Windows NT\Printers\PointAndPrint',
     value  => 'ServerList',
     type   => string,
   }
