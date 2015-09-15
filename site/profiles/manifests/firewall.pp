@@ -5,7 +5,14 @@
 
 class profiles::firewall {
 
-  #Keep Firewall Disabled
+  # Keep Firewall Disabled
+  #
+  # https://msdn.microsoft.com/en-us/library/
+  #    windows/desktop/aa366303%28v=vs.85%29.aspx
+  #
+  #  * NET_FW_PROFILE2_DOMAIN = 1
+  #  * NET_FW_PROFILE2_PRIVATE = 2
+  #  * NET_FW_PROFILE2_PUBLIC = 4
 
   exec { 'nodomainfw':
     command  => '$(New-Object -ComObject HNetCfg.FwPolicy2).FirewallEnabled(1) = $False',
