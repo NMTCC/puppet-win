@@ -20,32 +20,46 @@ class profiles::registry {
 
 
   # Disable "Allow all users to install updates on this computer"
-  registry_key { 'HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate': ensure => present }
+  registry_key { 'HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate':
+    ensure => present,
+  }
   registry_value { 'HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\ElevateNonAdmins':
     ensure => present,
-    data   => '0',
-    type   => 'dword',
+    type   => dword,
+    data   => 0,
   }
 
   # Don't show last logged-on user -- Classic Logon Screen:
   registry_value { 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\dontdisplaylastusername':
     ensure => present,
+    type   => dword,
     data   => 1,
   }
 
   # Windows Backup DisableMonitoring
-  registry_value { 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsBackup\DisableMonitoring':
+  registry_value { 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsBackup\DisableMonitoring':
     ensure => present,
-    data   => 1,
     type   => dword,
+    data   => 1,
   }
 
   # Turn Autologon off
-  registry_value { 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\AutoAdminLogon':
+  registry_value { 'HKLM\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\AutoAdminLogon':
     ensure => present,
-    data   => 0,
+    type   => string,
+    data   => '0',
   }
 
-
+  # Disable shut down in start menu
+  registry_value { 'HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\NoClose':
+    ensure => present,
+    type   => dword,
+    data   => 1,
+  }
+  registry_value { 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer\NoClose':
+    ensure => present,
+    type   => dword,
+    data   => 1,
+  }
 
 }
