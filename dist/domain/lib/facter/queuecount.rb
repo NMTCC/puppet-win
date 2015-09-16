@@ -6,7 +6,7 @@ Facter.add(:queuecount) do
     wmi = WIN32OLE.connect('winmgmts://./root/CIMV2')
     query = wmi.ExecQuery('Select * from Win32_Printer')
     query.each do |queue|
-      if(queue.systemname == '\\paperhost')
+      if queue.systemname.include? 'paperhost'
         result += 1
       end
     end
