@@ -57,4 +57,17 @@ class profiles::registry {
     data   => 1,
   }
 
+  # Set NTP to use our systems
+  # https://support.microsoft.com/en-us/kb/223184
+  registry_value { 'HKLM\SYSTEM\CurrentControlSet\Services\W32Time\Parameters\NtpServer':
+    ensure => present,
+    type   => string,
+    data   => '129.138.4.52 129.138.4.51',
+  } ->
+  registry_value { 'HKLM\SYSTEM\CurrentControlSet\Services\W32Time\Parameters\Type':
+    ensure => present,
+    type   => string,
+    data   => 'NTP',
+  }
+
 }
