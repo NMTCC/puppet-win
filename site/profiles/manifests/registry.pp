@@ -63,7 +63,7 @@ class profiles::registry {
     type   => string,
     data   => 'mailhost.nmt.edu',
   } ->
-  registry_value { 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\DateTime\Servers\(Default)':
+  registry_value { 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\DateTime\Servers\\':
     ensure => present,
     type   => string,
     data   => '6',
