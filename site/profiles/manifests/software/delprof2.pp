@@ -8,6 +8,9 @@ class profiles::software::delprof2 {
     path   => 'C:\itc\bin\DelProf2.exe',
     ensure => 'present',
     source => '\\puppet-win.nmt.edu\winshare\packages\Delprof2_1.6.0\DelProf2.exe',
+    owner  => 'Administrators',
+    group  => 'Users',
+    mode   => '0755',
   }
 
   scheduled_task { 'Remove old profiles':
