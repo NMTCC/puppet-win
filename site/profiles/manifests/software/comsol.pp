@@ -5,7 +5,7 @@ class profiles::software::comsol {
     ensure => 'file',
     source => '\\puppet-win.nmt.edu\winshare\packages\COMSOL\license.dat',
     owner  => 'Administrators',
-    group  => 'Administrator',
+    group  => 'Users',
     mode   => '0644',
   }
 
