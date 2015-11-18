@@ -69,4 +69,11 @@ class profiles::registry {
     data   => '6',
   }
 
+  # Disable switch user
+  registry_value { 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\HideFastUserSwitching':
+    ensure => present,
+    type   => dword,
+    data   => 1,
+  }
+
 }
