@@ -11,11 +11,11 @@ class profiles::software {
   include profiles::software::petromod
 #  include profiles::software::blueview
   include profiles::software::mathaddin
-  include profiles::software::lanschool
+#  include profiles::software::lanschool
   include profiles::software::delprof2
   include profiles::software::comsol
   include profiles::software::solidworks
-  include profiles::software::sas
-  include profiles::software::adobe
+#  include profiles::software::sas
+#  include profiles::software::adobe
 
 }
