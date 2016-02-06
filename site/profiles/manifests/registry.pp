@@ -76,4 +76,11 @@ class profiles::registry {
     data   => 1,
   }
 
+  # fix rdp mode
+  registry_value { 'HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp\UserAuthentication':
+    ensure => present,
+    type   => dword,
+    data   => 0,
+  }
+
 }
