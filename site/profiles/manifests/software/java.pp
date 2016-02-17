@@ -18,13 +18,13 @@ class profiles::software::java {
 
   file { 'C:\Windows\Sun\Java\Deployment\deployment.properties':
     ensure  => 'file',
-    content => "deployment.webjava.enabled=true\ndeployment.security.level=HIGH\ndeployment.security.level.locked\ndeployment.security.exception.sites=C:/Windows/Sun/Java/Deployment/exception.sites",
+    content => "deployment.webjava.enabled=true\ndeployment.security.level=HIGH\ndeployment.security.level.locked\ndeployment.security.exception.sites=C:\\Windows\\Sun\\Java\\Deployment\\exception.sites",
     require => File['C:\Windows\Sun\Java\Deployment'],
   }
 
   file { 'C:\Windows\Sun\Java\Deployment\exception.sites':
     ensure  => 'file',
-    content => "http://jmol.sourceforge.net/demo/atoms\nhttp://jmol.sourceforge.net/demo/atoms/",
+    content => "http://jmol.sourceforge.net",
     require => File['C:\Windows\Sun\Java\Deployment'],
   }
 
