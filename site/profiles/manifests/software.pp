@@ -17,5 +17,6 @@ class profiles::software {
   include profiles::software::solidworks
 #  include profiles::software::sas
 #  include profiles::software::adobe
+  include profiles::software::java
 
 }
