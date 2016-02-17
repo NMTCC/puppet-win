@@ -18,7 +18,7 @@ class profiles::software::chocolatey {
     'gimp',
     'winscp',
     'cygwin',
-    'Quicktime',
+#    'Quicktime',
     'Silverlight',
     #'iTunes',
     'InkScape',
