@@ -23,11 +23,11 @@ class roles::workstation::student {
   case $hour {
 
     '03': {
-      warning("Reboot gunshy.")
+      notice("Reboot gunshy.")
     }
     '02': {
       if $min > 45 {
-        warning("Reboot gunshy.")
+        notice("Reboot gunshy.")
       }
       else {
         include includelist
