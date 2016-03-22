@@ -83,4 +83,11 @@ class profiles::registry {
     data   => 0,
   }
 
+  # disable hibernate
+  registry_value { 'HKLM\SYSTEM\CurrentControlSet\Control\Power\HibernateEnabled':
+    ensure => present,
+    type   => dword,
+    data   => 0,
+  }
+
 }
