@@ -5,7 +5,6 @@ class profiles::software::chocolatey {
 
   $pkglist = [
     'git',
-    '7zip',
     'GoogleChrome',
     'Firefox',
     'vlc',
@@ -34,6 +33,7 @@ class profiles::software::chocolatey {
     ]
 
   $updatelist = [
+    '7zip',
     'javaruntime',
     'flashplayerplugin',
     'adobereader',
