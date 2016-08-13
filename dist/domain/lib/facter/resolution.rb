@@ -2,19 +2,20 @@ Facter.add(:currentres) do
   confine :operatingsystem => :windows
 
   setcode do
-    result = []
+    screen = []
     `wmic desktopmonitor get screenwidth /format:value`.each_line do |l|
       if l =~ /=/
         name, value = l.split('=')
-        result << value.to_i
+        screen << value.to_i
       end
     end
     `wmic desktopmonitor get screenheight /format:value`.each_line do |l|
       if l =~ /=/
         name, value = l.split('=')
-        result << value.to_i
+        screen << value.to_i
       end
     end
+    result = screen
   end
 
 end
@@ -43,12 +44,13 @@ Facter.add(:graphics) do
   confine :operatingsystem => :windows
 
   setcode do
-    result = "unknown"
+    gfx = "unknown"
     `c:/itc/bin/changescreenresolution.exe /l /d=0`.each_line do |l|
       if l =~ /\[0\]/
-        result = l.reverse[0...-18].reverse.strip
+        gfx = l.reverse[0...-18].reverse.strip
       end
     end
+    result = gfx
   end
 
 end
