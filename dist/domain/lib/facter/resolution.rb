@@ -24,7 +24,7 @@ Facter.add(:maxres) do
   confine :operatingsystem => :windows
 
   setcode do
-    result, output = []
+    screen, output = []
     `c:/itc/bin/changescreenresolution.exe /m /d=0`.each_line do |l|
       if l =~ /default/
         output << l
@@ -33,9 +33,10 @@ Facter.add(:maxres) do
     output.sort
     res, depth, freq = output.last.split
     x, y = res.split('x')
-    result << x.to_i << y.to_i
-    result << depth.sub('bit','').to_i
-    result << freq.sub('@','').sub('Hz','').to_i
+    screen << x.to_i << y.to_i
+    screen << depth.sub('bit','').to_i
+    screen << freq.sub('@','').sub('Hz','').to_i
+    result = screen
   end
 
 end
@@ -59,12 +60,13 @@ Facter.add(:monitor) do
   confine :operatingsystem => :windows
 
   setcode do
-    result = "unknown"
+    monitor = "unknown"
     `c:/itc/bin/changescreenresolution.exe /l /d=0`.each_line do |l|
       if l =~ /Monitor0/
-        puts l.reverse[0...-27].reverse.strip
+        monitor = l.reverse[0...-27].reverse.strip
       end
     end
+    result = monitor
   end
 
 end
