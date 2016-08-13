@@ -24,7 +24,8 @@ Facter.add(:maxres) do
   confine :operatingsystem => :windows
 
   setcode do
-    screen, output = []
+    screen = []
+    output = []
     `c:/itc/bin/changescreenresolution.exe /m /d=0`.each_line do |l|
       if l =~ /default/
         output << l
