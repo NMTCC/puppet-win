@@ -33,8 +33,11 @@ Facter.add(:maxres) do
     output.sort
     res, depth, freq = output.last.split
     x, y = res.split('x')
+    puts "res"
     screen << x.to_i << y.to_i
+    puts "depth"
     screen << depth.sub('bit','').to_i
+    puts "freq"
     screen << freq.sub('@','').sub('Hz','').to_i
     result = screen
   end
