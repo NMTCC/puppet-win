@@ -31,6 +31,11 @@ class profiles::queues {
       group  => 'Users',
       mode   => '0644',
     }
+    exec { "regadd-${title}":
+      command => "reg add c:\\itc\\etc\\${title}.reg",
+      unless  => "reg query HKLM\\SYSTEM\\CurrentControlSet\\Control\\Print\\Printers\\${title}",
+      require => File["C:/itc/etc/${title}.reg"],
+    }
   }
 
   queuedotreg { $printers : }
