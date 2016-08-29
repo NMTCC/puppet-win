@@ -32,10 +32,9 @@ class profiles::queues {
       mode   => '0644',
     }
     exec { "regadd-${title}":
-      command  => "reg import c:\\itc\\etc\\${title}.reg",
-      unless   => "reg query HKLM\\SYSTEM\\CurrentControlSet\\Control\\Print\\Printers\\${title}",
-      provider => powershell,
-      require  => File["C:/itc/etc/${title}.reg"],
+      command   => "reg import c:\\itc\\etc\\${title}.reg",
+      provider  => powershell,
+      subscribe => File["C:/itc/etc/${title}.reg"],
     }
   }
 
