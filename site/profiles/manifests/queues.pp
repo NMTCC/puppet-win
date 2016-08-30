@@ -32,9 +32,10 @@ class profiles::queues {
       mode   => '0644',
     }
     exec { "regadd-${title}":
-      command   => "reg import c:\\itc\\etc\\${title}.reg",
-      provider  => powershell,
-      subscribe => File["C:/itc/etc/${title}.reg"],
+      command     => "reg import c:\\itc\\etc\\${title}.reg",
+      provider    => powershell,
+      subscribe   => File["C:/itc/etc/${title}.reg"],
+      refreshonly => true,
     }
   }
 
