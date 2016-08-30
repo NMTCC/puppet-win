@@ -12,6 +12,7 @@ class includelist {
   include profiles::postsysprep
   include profiles::drivers
   include profiles::diskcleaner
+  include profiles::queues
 
 }
 
