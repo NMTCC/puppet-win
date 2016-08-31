@@ -7,19 +7,25 @@ class profiles::queues {
   $printers = [
     'cramer114',
     'fidel130',
+    'fidel130-color',
     'library122',
     'library208',
+    'library208-color',
     'library22',
+    'presidents113',
     'south218',
     'speare112',
     'speare116',
     'speare117',
     'speare23a',
+    'speare23-printer',
     'speare4a',
     'speare5',
+    'speare5-color',
     'torres130',
     'weir128',
-    'weir209'
+    'weir209',
+    'west219'
   ]
 
 
