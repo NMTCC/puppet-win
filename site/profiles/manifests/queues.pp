@@ -18,7 +18,7 @@ class profiles::queues {
     'speare116',
     'speare117',
     'speare23a',
-    'speare23-printer',
+    'speare23-color',
     'speare4a',
     'speare5',
     'speare5-color',
