@@ -18,5 +18,6 @@ class profiles::software {
 #  include profiles::software::sas
 #  include profiles::software::adobe
   include profiles::software::java
+  include profiles::software::labview
 
 }
