@@ -6,17 +6,17 @@
 
 class grouppolicy::user {
 
-  file { 'C:\Windows\Sysnative\GroupPolicy\User':
+  file { 'C:\Windows\SysWOW64\GroupPolicy\User':
     ensure => 'directory',
   }
 
-  file { 'C:\Windows\Sysnative\GroupPolicy\User\Registry.pol':
+  file { 'C:\Windows\SysWOW64\GroupPolicy\User\Registry.pol':
     ensure => 'file',
     source => 'puppet:///modules/grouppolicy/user/Registry.pol',
   }
 
-  exec { 'C:\Windows\Sysnative\gpupdate.exe /force':
-    subscribe   => File['C:\Windows\Sysnative\GroupPolicy\User\Registry.pol'],
+  exec { 'C:\Windows\SysWOW64\gpupdate.exe /force':
+    subscribe   => File['C:\Windows\SysWOW64\GroupPolicy\User\Registry.pol'],
     refreshonly => true,
   }
 
