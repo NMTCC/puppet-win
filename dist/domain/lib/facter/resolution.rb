@@ -47,9 +47,10 @@ Facter.add(:graphics) do
 
   setcode do
     gfx = "unknown"
-    `c:/itc/bin/changescreenresolution.exe /l /d=0`.each_line do |l|
-      if l =~ /\[0\]/
-        gfx = l.reverse[0...-18].reverse.strip
+    `wmic path win32_videocontroller get name /format:value`.each_line do |l|
+      if l =~ /=/
+        name, value = l.split('=')
+        monitor = value.to_s.chomp
       end
     end
     result = gfx
@@ -69,6 +70,23 @@ Facter.add(:monitor) do
       end
     end
     result = monitor
+  end
+
+end
+
+Facter.add(:maxres) do
+  confine :operatingsystem => :windows
+
+  setcode do
+    screen = []
+    `c:/itc/bin/dumpedid.exe`.each_line do |l|
+    if l =~ /Maximum Resolution/
+      label, value = l.split(':')
+      maxx, maxy = value.split('X')
+      screen << maxx.chomp.to_i
+      screen << maxxy.chomp.to_i
+    end
+    result = screen
   end
 
 end
