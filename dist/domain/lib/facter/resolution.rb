@@ -20,24 +20,24 @@ Facter.add(:currentres) do
 
 end
 
-Facter.add(:maxres) do
+Facter.add(:pixelsperinch) do
   confine :operatingsystem => :windows
 
   setcode do
-    screen = []
-    output = []
-    `c:/itc/bin/changescreenresolution.exe /m /d=0`.each_line do |l|
-      if l =~ /default/
-        output << l
+    ppi = []
+    `wmic desktopmonitor get pixelsperxlogicalinch /format:value`.each_line do |l|
+      if l =~ /=/
+        name, value = l.split('=')
+        ppi << value.to_i
       end
     end
-    output.sort
-    res, depth, freq = output.last.split
-    x, y = res.split('x')
-    screen << x.to_i << y.to_i
-    screen << depth.sub('bit','').to_i
-    screen << freq.sub('@','').sub('Hz','').to_i
-    result = screen
+    `wmic desktopmonitor get pixelsperylogicalinch /format:value`.each_line do |l|
+      if l =~ /=/
+        name, value = l.split('=')
+        ppi << value.to_i
+      end
+    end
+    result = ppi
   end
 
 end
@@ -62,9 +62,10 @@ Facter.add(:monitor) do
 
   setcode do
     monitor = "unknown"
-    `c:/itc/bin/changescreenresolution.exe /l /d=0`.each_line do |l|
-      if l =~ /Monitor0/
-        monitor = l.reverse[0...-27].reverse.strip
+    `wmic desktopmonitor get name /format:value`.each_line do |l|
+      if l =~ /=/
+        name, value = l.split('=')
+        monitor = value.to_s.chomp
       end
     end
     result = monitor
