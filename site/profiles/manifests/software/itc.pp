@@ -12,8 +12,8 @@ class profiles::software::itc {
     ensure => 'file',
     source => '\\puppet-win.nmt.edu\winshare\packages\itc\ChangeScreenResolution.exe',
     owner  => 'Administrators',
-    group  => 'Users',
-    mode   => '0755',
+    group  => 'None',
+    mode   => '2000700',
   }
 
 }
