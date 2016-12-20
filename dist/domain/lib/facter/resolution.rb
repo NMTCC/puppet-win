@@ -80,11 +80,12 @@ Facter.add(:maxres) do
   setcode do
     screen = []
     `c:/itc/bin/dumpedid.exe`.each_line do |l|
-    if l =~ /Maximum Resolution/
-      label, value = l.split(':')
-      maxx, maxy = value.split('X')
-      screen << maxx.chomp.to_i
-      screen << maxxy.chomp.to_i
+      if l =~ /Maximum Resolution/
+        label, value = l.split(':')
+        maxx, maxy = value.split('X')
+        screen << maxx.chomp.to_i
+        screen << maxxy.chomp.to_i
+      end
     end
     result = screen
   end
