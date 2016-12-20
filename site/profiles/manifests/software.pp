@@ -19,5 +19,6 @@ class profiles::software {
 #  include profiles::software::adobe
   include profiles::software::java
   include profiles::software::labview
+  include profiles::software::itc
 
 }
