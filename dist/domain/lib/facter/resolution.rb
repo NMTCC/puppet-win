@@ -84,7 +84,7 @@ Facter.add(:maxres) do
         label, value = l.split(':')
         maxx, maxy = value.split('X')
         screen << maxx.chomp.to_i
-        screen << maxxy.chomp.to_i
+        screen << maxy.chomp.to_i
       end
     end
     result = screen
