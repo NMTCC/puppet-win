@@ -50,7 +50,7 @@ Facter.add(:graphics) do
     `wmic path win32_videocontroller get name /format:value`.each_line do |l|
       if l =~ /=/
         name, value = l.split('=')
-        monitor = value.to_s.chomp
+        gfx = value.to_s.chomp
       end
     end
     result = gfx
