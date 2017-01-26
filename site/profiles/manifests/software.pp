@@ -20,5 +20,6 @@ class profiles::software {
   include profiles::software::java
   include profiles::software::labview
   include profiles::software::itc
+  include profiles::software::vpython
 
 }
