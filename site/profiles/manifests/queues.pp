@@ -47,4 +47,19 @@ class profiles::queues {
 
   queuedotreg { $printers : }
 
+  file { 'C:/itc/etc/driver.printerExport':
+    ensure => 'file',
+    source => '//puppet-win.nmt.edu/winshare/registry/driver.printerExport',
+    owner  => 'Administrators',
+    group  => 'Users',
+    mode   => '0644',
+  }
+
+  exec { 'phaser-6700-install':
+    command  => 'PrintBrm.exe -r -f C:\itc\etc\driver.printerExport',
+    provider => powershell,
+    creates  => 'C:/Windows/system32/spool/DRIVERS/x64/3/xDHAYPGR.p3p',
+    require  => File['C:/itc/etc/driver.printerExport'],
+  }
+
 }
