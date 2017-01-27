@@ -56,7 +56,7 @@ class profiles::queues {
   }
 
   exec { 'phaser-6700-install':
-    command  => 'PrintBrm.exe -r -f C:\itc\etc\driver.printerExport',
+    command  => 'C:\Windows\system32\spool\tools\PrintBrm.exe -r -f C:\itc\etc\driver.printerExport',
     provider => powershell,
     creates  => 'C:/Windows/system32/spool/DRIVERS/x64/3/xDHAYPGR.p3p',
     require  => File['C:/itc/etc/driver.printerExport'],
