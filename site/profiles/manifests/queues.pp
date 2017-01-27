@@ -60,7 +60,7 @@ class profiles::queues {
       require => File["C:/itc/etc/${title}.reg"],
     }
     exec { "regdel-${title}":
-      command     => "reg import c:\\itc\\etc\\${title}.reg",
+      command     => "reg import c:\\itc\\etc\\${title}-rem.reg",
       provider    => powershell,
       subscribe   => File["C:/itc/etc/${title}-rem.reg"],
       refreshonly => true,
