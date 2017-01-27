@@ -7,13 +7,11 @@ class profiles::queues {
   $printers = [
     'cramer114',
     'fidel130',
-    'fidel130-color',
     'goldw101',
     'goldw145',
     'goldw145-color',
     'library122',
     'library208',
-    'library208-color',
     'library22',
     'presidents113',
     'south218',
@@ -28,6 +26,10 @@ class profiles::queues {
     'west219'
   ]
 
+  $oldprinters = [
+    'fidel130-color',
+    'library208-color'
+  ]
 
   define queuedotreg {
     file { "C:/itc/etc/${title}.reg":
@@ -45,7 +47,28 @@ class profiles::queues {
     }
   }
 
+  define dequeuedotreg {
+    file { "C:/itc/etc/${title}.reg":
+      ensure => 'absent',
+    }
+    file { "C:/itc/etc/${title}-rem.reg":
+      ensure  => 'file',
+      source  => "//puppet-win.nmt.edu/winshare/registry/${title}-rem.reg",
+      owner   => 'Administrators',
+      group   => 'Users',
+      mode    => '0644',
+      require => File["C:/itc/etc/${title}.reg"],
+    }
+    exec { "regdel-${title}":
+      command     => "reg import c:\\itc\\etc\\${title}.reg",
+      provider    => powershell,
+      subscribe   => File["C:/itc/etc/${title}-rem.reg"],
+      refreshonly => true,
+    }
+  }
+
   queuedotreg { $printers : }
+  dequeuedotreg { $oldprinters : }
 
   file { 'C:/itc/etc/driver.printerExport':
     ensure => 'file',
