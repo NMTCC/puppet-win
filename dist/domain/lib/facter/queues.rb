@@ -5,9 +5,7 @@ Facter.add(:queues) do
     queuelist = []
     names = []
     shares = []
-    powershell = 'C:\Windows\system32\WindowsPowerShell\v1.0\powershell.exe'
-    command = `Get-WmiObject -Class Win32_Printer`
-    blob = Facter::Util::Resolution.exec(%Q{#{powershell} -command "#{command}"})
+    blob = `Get-WmiObject -Class Win32_Printer`
     blob.each_line do |l|
       if l =~ /Name/
         names << l.split(':').gsub(/ /, '').chomp
