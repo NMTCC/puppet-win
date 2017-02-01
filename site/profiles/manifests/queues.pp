@@ -10,7 +10,6 @@ class profiles::queues {
     'goldw101',
     'goldw145',
     'goldw145-color',
-    'library122',
     'library208',
     'library22',
     'presidents113',
@@ -28,6 +27,7 @@ class profiles::queues {
 
   $oldprinters = [
     'fidel130-color',
+    'library122',
     'library208-color'
   ]
 
@@ -83,6 +83,21 @@ class profiles::queues {
     provider => powershell,
     creates  => 'C:/Windows/system32/spool/DRIVERS/x64/3/xDHAYPGR.p3p',
     require  => File['C:/itc/etc/driver.printerExport'],
+  }
+
+  file { 'C:/itc/etc/library122-color.printerExport':
+    ensure => 'file',
+    source => '//puppet-win.nmt.edu/winshare/registry/library122-color.printerExport',
+    owner  => 'Administrators',
+    group  => 'Users',
+    mode   => '0644',
+  }
+
+  exec { 'library122-color-queue':
+    command  => 'C:\Windows\system32\spool\tools\PrintBrm.exe -r -f C:\itc\etc\library122-color.printerExport',
+    provider => powershell,
+    creates  => 'C:/Windows/system32/spool/DRIVERS/x64/3/xDHAYPGR.p3p',
+    require  => File['C:/itc/etc/library122-color.printerExport'],
   }
 
 }
