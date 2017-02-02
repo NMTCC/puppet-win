@@ -96,7 +96,6 @@ class profiles::queues {
   exec { 'library122-color-queue':
     command  => 'C:\Windows\system32\spool\tools\PrintBrm.exe -r -f C:\itc\etc\library122-color.printerExport',
     provider => powershell,
-    creates  => 'C:/Windows/system32/spool/DRIVERS/x64/3/xDHAYPGR.p3p',
     require  => File['C:/itc/etc/library122-color.printerExport'],
   }
 
