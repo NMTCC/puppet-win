@@ -6,10 +6,8 @@ class profiles::queues {
 
   $printers = [
     'cramer114',
-    'fidel130',
     'goldw101',
     'goldw145',
-    'goldw145-color',
     'library208',
     'library22',
     'presidents113',
@@ -26,7 +24,9 @@ class profiles::queues {
   ]
 
   $oldprinters = [
+    'fidel130',
     'fidel130-color',
+    'goldw145-color',
     'library122',
     'library208-color'
   ]
@@ -85,18 +85,18 @@ class profiles::queues {
     require  => File['C:/itc/etc/driver.printerExport'],
   }
 
-  file { 'C:/itc/etc/library122-color.printerExport':
+  file { 'C:/itc/etc/que.printerExport':
     ensure => 'file',
-    source => '//puppet-win.nmt.edu/winshare/registry/library122-color.printerExport',
+    source => '//puppet-win.nmt.edu/winshare/registry/que.printerExport',
     owner  => 'Administrators',
     group  => 'Users',
     mode   => '0644',
   }
 
-  exec { 'library122-color-queue':
-    command  => 'C:\Windows\system32\spool\tools\PrintBrm.exe -r -f C:\itc\etc\library122-color.printerExport',
+  exec { 'phaser-queues':
+    command  => 'C:\Windows\system32\spool\tools\PrintBrm.exe -r -f C:\itc\etc\que.printerExport',
     provider => powershell,
-    require  => File['C:/itc/etc/library122-color.printerExport'],
+    require  => File['C:/itc/etc/que.printerExport'],
   }
 
 }
