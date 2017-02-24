@@ -8,7 +8,6 @@ class profiles::software::chocolatey {
     'GoogleChrome',
     'Firefox',
     'vlc',
-#    'putty.install',
     'filezilla',
     'vim',
     'Emacs',
@@ -38,6 +37,7 @@ class profiles::software::chocolatey {
     'flashplayerplugin',
     'adobereader',
     'notepadplusplus',
+    'putty.install',
   ]
 
   package { $pkglist:     ensure => installed, provider => 'chocolatey', }
