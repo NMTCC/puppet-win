@@ -96,6 +96,7 @@ class profiles::queues {
   exec { 'phaser-queues':
     command  => 'C:\Windows\system32\spool\tools\PrintBrm.exe -r -f C:\itc\etc\que.printerExport',
     provider => powershell,
+    unless   => 'Get-WmiObject Win32_Printer | Select-String goldw145-color',
     require  => File['C:/itc/etc/que.printerExport'],
   }
 
