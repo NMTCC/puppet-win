@@ -19,7 +19,6 @@ class profiles::software::chocolatey {
 #    'Quicktime',
     'Silverlight',
     #'iTunes',
-    'InkScape',
     'thunderbird',
 #    'ActivePerl',
     'Ghostscript.app',
@@ -33,9 +32,10 @@ class profiles::software::chocolatey {
 
   $updatelist = [
     '7zip',
-    'javaruntime',
-    'flashplayerplugin',
     'adobereader',
+    'flashplayerplugin',
+    'InkScape',
+    'javaruntime',
     'notepadplusplus',
     'putty.install',
   ]
