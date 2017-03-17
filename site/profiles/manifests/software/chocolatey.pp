@@ -42,4 +42,8 @@ class profiles::software::chocolatey {
 
   package { $pkglist:     ensure => installed, provider => 'chocolatey', }
   package { $updatelist:  ensure => latest,    provider => 'chocolatey', }
+
+  package { 'InkScape 0.91': ensure => absent }
+  Package['InkScape'] -> Package['InkScape 0.91']
+
 }
