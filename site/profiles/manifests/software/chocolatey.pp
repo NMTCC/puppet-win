@@ -34,7 +34,7 @@ class profiles::software::chocolatey {
     '7zip',
     'adobereader',
     'flashplayerplugin',
-    'InkScape',
+    'inkscape',
     'javaruntime',
     'notepadplusplus',
     'putty.install',
@@ -43,7 +43,7 @@ class profiles::software::chocolatey {
   package { $pkglist:     ensure => installed, provider => 'chocolatey', }
   package { $updatelist:  ensure => latest,    provider => 'chocolatey', }
 
-  package { 'InkScape 0.91': ensure => absent }
-  Package['InkScape'] -> Package['InkScape 0.91']
+  package { 'Inkscape 0.91': ensure => absent }
+  Package['inkscape'] -> Package['Inkscape 0.91']
 
 }
