@@ -1,17 +1,14 @@
-forge "http://forge.puppetlabs.com"
+forge 'http://forge.puppetlabs.com'
 
-# Modules from the Puppet Forge
-mod "puppetlabs/stdlib"
-#mod "adenning/winntp"
-#mod "adenning/winfacts"
+# Modules from Puppet Forge
 mod "badgerious/windows_env"
-mod "puppetlabs/powershell"
+mod "puppetlabs/chocolatey"
 mod "puppetlabs/inifile"
-mod "puppetlabs/postgresql"
+mod "puppetlabs/powershell"
 mod "puppetlabs/reboot"
 mod "puppetlabs/registry"
-mod "chocolatey/chocolatey"
+mod "puppetlabs/stdlib"
 mod "trlinkin/domain_membership"
+# deprecated
+mod "puppetlabs/postgresql"
 mod "puppetlabs/puppetdb"
-
-
