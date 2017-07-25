@@ -1,23 +1,3 @@
-node tccwin7 {
-
-
-include roles::workstation::student
-include grouppolicy
-
-}
-
-
-
-node default inherits tccwin7 { }
-
-
-node "template-a.tcc7" {
-  include roles::workstation::template
-  include grouppolicy
-
-}
-
-
 node 'puppet-win.nmt.edu' {
   class { 'puppetdb': }
   class { 'puppetdb::master::config':
