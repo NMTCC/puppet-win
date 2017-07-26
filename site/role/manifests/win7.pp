@@ -5,5 +5,6 @@ class role::win7 {
   include profile::diskcleaner
   include profile::firewall
   include profile::registry
+  include profile::software
 
 }
