@@ -6,5 +6,6 @@ class role::win7 {
   include profile::firewall
   include profile::registry
   include profile::software
+  include profile::users
 
 }

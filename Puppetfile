@@ -15,3 +15,9 @@ mod 'puppetlabs/concat'
 mod 'puppetlabs/firewall'
 mod 'puppetlabs/postgresql'
 mod 'puppetlabs/puppetdb'
+
+# Modules from git
+mod 'site-data',
+  :git => 'git+ssh://gitolite3@inception.nmt.edu/site-data.git',
+  :branch => 'master',
+  :install_path => 'hieradata'
