@@ -1,7 +1,7 @@
 # Configure basic stuff
 class profile::base {
 
-  file { 'C:\itc',
+  file { 'C:\itc':
     ensure => directory,
   }
 
