@@ -1,4 +1,4 @@
-# Manage registry entries that are not policy settings
+# Manage other registry entries
 class profile::registry {
 
   # Values for NT4(Samba3) Domain Compatibility
@@ -82,6 +82,108 @@ class profile::registry {
     ensure => present,
     type   => dword,
     data   => 0,
+  }
+
+  # network/profile options
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows\System\WaitForNetwork':
+    ensure => present,
+    type   => dword,
+    data   => 1,
+  }
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows\System\SlowLinkDetectEnabled':
+    ensure => present,
+    type   => dword,
+    data   => 0,
+  }
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows\System\ProfileErrorAction':
+    ensure => present,
+    type   => dword,
+    data   => 1,
+  }
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows\System\DeleteRoamingCache':
+    ensure => present,
+    type   => dword,
+    data   => 1,
+  }
+  registry_value { 'HKLM\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\DeleteRoamingCache':
+    ensure => present,
+    type   => dword,
+    data   => 1,
+  }
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows\System\CleanupProfiles':
+    ensure => present,
+    type   => dword,
+    data   => 5,
+  }
+
+  # Point and Print Restrictions
+  # Machine, Admin Templates, Printers
+  registry_key { 'HKLM\Software\Policies\Microsoft\Windows NT\Printers':
+    ensure => present,
+  }
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows NT\Printers\PointAndPrint\Restricted':
+    ensure => present,
+    type   => dword,
+    data   => 1,
+  }
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows NT\Printers\PointAndPrint\TrustedServers':
+    ensure => present,
+    type   => dword,
+    data   => 0,
+  }
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows NT\Printers\PointAndPrint\InForest':
+    ensure => present,
+    type   => dword,
+    data   => 1,
+  }
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows NT\Printers\PointAndPrint\NoWarningNoElevationOnInstall':
+    ensure => present,
+    type   => dword,
+    data   => 1,
+  }
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows NT\Printers\PointAndPrint\UpdatePromptSettings':
+    ensure => present,
+    type   => dword,
+    data   => 2,
+  }
+  registry_value { 'HKLM\Software\Policies\Microsoft\Windows NT\Printers\PointAndPrint\ServerList':
+    ensure => present,
+    type   => string,
+  }
+
+  # Point and Print Restrictions
+  # Wow version
+  registry_key { 'HKLM\Software\Wow6432Node\Policies\Microsoft\Windows NT\Printers':
+    ensure => present,
+  }
+  registry_value { 'HKLM\Software\Wow6432Node\Policies\Microsoft\Windows NT\Printers\PointAndPrint\Restricted':
+    ensure => present,
+    type   => dword,
+    data   => 1,
+  }
+  registry_value { 'HKLM\Software\Wow6432Node\Policies\Microsoft\Windows NT\Printers\PointAndPrint\TrustedServers':
+    ensure => present,
+    type   => dword,
+    data   => 0,
+  }
+  registry_value { 'HKLM\Software\Wow6432Node\Policies\Microsoft\Windows NT\Printers\PointAndPrint\InForest':
+    ensure => present,
+    type   => dword,
+    data   => 1,
+  }
+  registry_value { 'HKLM\Software\Wow6432Node\Policies\Microsoft\Windows NT\Printers\PointAndPrint\NoWarningNoElevationOnInstall':
+    ensure => present,
+    type   => dword,
+    data   => 1,
+  }
+  registry_value { 'HKLM\Software\Wow6432Node\Policies\Microsoft\Windows NT\Printers\PointAndPrint\UpdatePromptSettings':
+    ensure => present,
+    type   => dword,
+    data   => 2,
+  }
+  registry_value { 'HKLM\Software\Wow6432Node\Policies\Microsoft\Windows NT\Printers\PointAndPrint\ServerList':
+    ensure => present,
+    type   => string,
   }
 
 }
