@@ -35,7 +35,10 @@ class profile::software::chocolatey {
     'putty.install',
   ]
 
-  package { $pkglist:     ensure => installed, provider => 'chocolatey', }
-  package { $updatelist:  ensure => latest,    provider => 'chocolatey', }
+  package { $pkglist:     ensure    => installed, provider => 'chocolatey', }
+  package { $updatelist:  ensure    => latest,    provider => 'chocolatey', }
+
+  package { 'Inkscape 0.91': ensure =>  absent }
+  Package['Inkscape 0.91'] -> Package['inkscape']
 
 }
