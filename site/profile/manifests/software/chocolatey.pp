@@ -21,6 +21,7 @@ class profile::software::chocolatey {
     'vim',
     'VirtualCloneDrive',
     'vlc',
+    'wget',
     'winscp',
     'Xming',
   ]
