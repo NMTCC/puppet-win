@@ -2,6 +2,7 @@ forge 'http://forge.puppetlabs.com'
 
 # Modules from Puppet Forge
 mod 'badgerious/windows_env'
+mod 'maestrodev/wget'
 mod 'puppetlabs/chocolatey'
 mod 'puppetlabs/inifile'
 mod 'puppetlabs/powershell'

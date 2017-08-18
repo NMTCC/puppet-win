@@ -79,7 +79,7 @@ Facter.add(:maxres) do
 
   setcode do
     screen = []
-    `c:/itc/bin/dumpedid.exe`.each_line do |l|
+    `c:/ProgramData/chocolatey/bin/DumpEDID.exe`.each_line do |l|
       if l =~ /Maximum Resolution/
         label, value = l.split(':')
         maxx, maxy = value.split('X')
