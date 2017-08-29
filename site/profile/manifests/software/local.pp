@@ -37,4 +37,8 @@ class profile::software::local {
 
   }
 
+  file { 'C:\itc\bin\unroll.bat':
+    ensure => absent,
+  }
+
 }
