@@ -1,4 +1,4 @@
 puppet-win
-=============
+==========
 
-TCC Windows Puppet Configuration
+ITC Windows Puppet configuration.
