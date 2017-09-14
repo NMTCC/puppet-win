@@ -7,7 +7,7 @@ class profile::nightlyreboot {
     group   => 'Users',
     mode    => '0644',
     content =>
-      "\$UserCount = query user | Measure-Object -line | Select -ExpandProperty 'Lines'\r\nif (\$UserCount -lt 2) { Restart-Computer }",
+      "\$ProcessNames = @(Get-Process | Select -ExpandProperty 'ProcessName')\r\nif (\$ProcessNames.Contains('LogonUI')) { Restart-Computer }",
   }
 
   scheduled_task { 'Nightly Reboot':
