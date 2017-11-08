@@ -43,6 +43,7 @@ class profile::software::chocolatey {
   package { $updatelist:  ensure    => latest,    provider => 'chocolatey', }
 
   package { 'Inkscape 0.91': ensure =>  absent }
-  Package['Inkscape 0.91'] -> Package['inkscape']
+  package { 'Inkscape 0.92.1': ensure =>  absent }
+  Package['Inkscape 0.91'] -> Package['Inkscape 0.92.1'] -> Package['inkscape']
 
 }
