@@ -118,7 +118,7 @@ class profile::registry {
 
   # Point and Print Restrictions
   # Machine, Admin Templates, Printers
-  registry_key { 'HKLM\Software\Policies\Microsoft\Windows NT\Printers':
+  registry_key { 'HKLM\Software\Policies\Microsoft\Windows NT\Printers\PointAndPrint':
     ensure => present,
   }
   registry_value { 'HKLM\Software\Policies\Microsoft\Windows NT\Printers\PointAndPrint\Restricted':
@@ -153,6 +153,9 @@ class profile::registry {
 
   # Point and Print Restrictions
   # Wow version
+  registry_key { 'HKLM\Software\Wow6432Node\Policies\Microsoft\Windows NT\Printers\PointAndPrint':
+    ensure => present,
+  }
   registry_key { 'HKLM\Software\Wow6432Node\Policies\Microsoft\Windows NT\Printers':
     ensure => present,
   }
