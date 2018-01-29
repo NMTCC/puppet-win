@@ -1,49 +1,26 @@
 # Configure Chocolatey packages
 class profile::software::chocolatey {
 
-  $pkglist = [
-    'blender',
-    'cygwin',
-    'dumpedid',
-    'Emacs',
-    'filezilla',
-    'Firefox',
-    'Ghostscript.app',
-    'gimp',
-    'git',
-    'gnuwin32-sed.install',
-    'GoogleChrome',
-    'googleearth',
-    'libreoffice',
-    'md5sums',
-    'miktex',
-    'mingw',
-    'python3',
-    'Silverlight',
-    'thunderbird',
-    'vim',
-    'VirtualCloneDrive',
-    'vlc',
-    'wget',
-    'winscp',
-    'Xming',
-  ]
+  #TODO: sources look at doing this with config for self service option
+  ChocolateySource {tcc:
+    ensure => present,
+    location => 'https://cocoa-host.nmt.edu/chocolatey',
+    priority => 1
+  }
+  #TODO: configure features
 
-  $updatelist = [
-    '7zip',
-    'adobereader',
-    'flashplayerplugin',
-    'inkscape',
-    'javaruntime',
-    'notepadplusplus',
-    'putty.install',
-  ]
+  #package section
+  $pkglist = heira('installlist')
+  $updatelist = heira('updatelist')
+  $uninstalllist = heira('uninstalllist')
 
-  package { $pkglist:     ensure    => installed, provider => 'chocolatey', }
+  package { $uninstalllist: ensure => absent }
   package { $updatelist:  ensure    => latest,    provider => 'chocolatey', }
+  package { $pkglist:     ensure    => installed, provider => 'chocolatey', }
 
-  package { 'Inkscape 0.91': ensure =>  absent }
-  package { 'Inkscape 0.92.1': ensure =>  absent }
-  Package['Inkscape 0.91'] -> Package['Inkscape 0.92.1'] -> Package['inkscape']
+  #TODO: Test that new method works for this
+  #package { 'Inkscape 0.91': ensure =>  absent }
+  #package { 'Inkscape 0.92.1': ensure =>  absent }
+  #Package['Inkscape 0.91'] -> Package['Inkscape 0.92.1'] -> Package['inkscape']
 
 }
