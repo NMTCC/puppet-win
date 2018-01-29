@@ -19,7 +19,7 @@ installlist:
   - 'winscp'
   - 'Xming'
   - 'inkscape'
-upgradelist:
+updatelist:
   - 'chocolatey'
   - 'chocolic'
   - '7zip'
