@@ -8,15 +8,15 @@ class profile::software::chocolatey {
   #package section
   $pkglist = hiera('installlist')
   $updatelist = hiera('updatelist')
-  $uninstalllist = hiera('uninstalllist')
+  #$uninstalllist = hiera('uninstalllist')
 
-  package { $uninstalllist: ensure => absent,     provider => 'chocolatey', }
+  #package { $uninstalllist: ensure => absent,     provider => 'chocolatey', }
   package { $updatelist:  ensure    => latest,    provider => 'chocolatey', }
   package { $pkglist:     ensure    => installed, provider => 'chocolatey', }
 
-  #TODO: Test that new method works for this
-  #package { 'Inkscape 0.91': ensure =>  absent }
-  #package { 'Inkscape 0.92.1': ensure =>  absent }
-  #Package['Inkscape 0.91'] -> Package['Inkscape 0.92.1'] -> Package['inkscape']
+  #TODO: fix on new domain
+  package { 'Inkscape 0.91': ensure =>  absent }
+  package { 'Inkscape 0.92.1': ensure =>  absent }
+  Package['Inkscape 0.91'] -> Package['Inkscape 0.92.1'] -> Package['inkscape']
 
 }
