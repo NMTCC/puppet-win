@@ -18,7 +18,7 @@ installlist:
   - 'wget'
   - 'winscp'
   - 'Xming'
-  - 'inkscape'
+#  - 'inkscape'
 updatelist:
   - 'chocolatey'
   - 'chocolic'
@@ -38,5 +38,3 @@ updatelist:
   - 'GoogleChrome'
   - 'googleearth'
 uninstalllist:
-  - 'Inkscape 0.91'
-  - 'Inkscape 0.92.1'
