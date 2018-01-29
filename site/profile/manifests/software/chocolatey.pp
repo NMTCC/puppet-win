@@ -2,11 +2,7 @@
 class profile::software::chocolatey {
 
   #TODO: sources look at doing this with config for self service option
-  ChocolateySource {'tcc':
-    ensure => present,
-    location => 'https://cocoa-host.nmt.edu/chocolatey',
-    priority => 1
-  }
+  ChocolateySource {'tcc': ensure => present, location => 'https://cocoa-host.nmt.edu/chocolatey', priority => 1 }
   #TODO: configure features
 
   #package section
