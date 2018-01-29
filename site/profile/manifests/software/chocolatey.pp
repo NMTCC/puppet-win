@@ -10,9 +10,9 @@ class profile::software::chocolatey {
   #TODO: configure features
 
   #package section
-  $pkglist = heira('installlist')
-  $updatelist = heira('updatelist')
-  $uninstalllist = heira('uninstalllist')
+  $pkglist = hiera('installlist')
+  $updatelist = hiera('updatelist')
+  $uninstalllist = hiera('uninstalllist')
 
   package { $uninstalllist: ensure => absent }
   package { $updatelist:  ensure    => latest,    provider => 'chocolatey', }
