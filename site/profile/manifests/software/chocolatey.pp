@@ -10,7 +10,7 @@ class profile::software::chocolatey {
   $updatelist = hiera('updatelist')
   $uninstalllist = hiera('uninstalllist')
 
-  package { $uninstalllist: ensure => absent }
+  package { $uninstalllist: ensure => absent,     provider => 'chocolatey', }
   package { $updatelist:  ensure    => latest,    provider => 'chocolatey', }
   package { $pkglist:     ensure    => installed, provider => 'chocolatey', }
 
