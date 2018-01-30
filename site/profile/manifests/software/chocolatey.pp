@@ -4,7 +4,7 @@ class profile::software::chocolatey {
   #TODO: sources look at doing this with config for self service option
   ChocolateySource {'tcc': ensure => present, location => 'https://cocoa-host.nmt.edu/chocolatey', priority => 1 }
   #TODO: configure features
-
+  ChocolateyFeature { 'allowGlobalConfirmation' : ensure = enabled }
   #package section
   $pkglist = hiera('installlist')
   $updatelist = hiera('updatelist')
